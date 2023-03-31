@@ -5,7 +5,7 @@ Tu as envie de découvrir le fonctionnement des structures de données probabili
 
 Alors tu es au bon endroit ! :wink:
 
-Ce repository est un cours sur les structures de données probabilistiques prévu pour être suivi en [pédagogie inversée](https://fr.wikipedia.org/wiki/Classe_invers%C3%A9e). De cette manière, tu peux commencer par regarder ces ressources :
+Ce repository est un cours sur les structures de données probabilistes prévu pour être suivi en [pédagogie inversée](https://fr.wikipedia.org/wiki/Classe_invers%C3%A9e). De cette manière, tu peux commencer par regarder ces ressources :
 1. [Structure de données et compléxité algorithmique (5-10 min)](./Structure%20de%20données%20et%20compléxité%20algorithmique.md)
 2. [Structure de données : Table de hachage (5-10 min)](./Structure%20de%20données%20:%20table%20de%20hachage.md)
 3. [Structure de données probabiliste : Filtre de bloom (5-10 min)](./Structure%20de%20données%20probabiliste%20:%20Filtre%20de%20bloom.md)
