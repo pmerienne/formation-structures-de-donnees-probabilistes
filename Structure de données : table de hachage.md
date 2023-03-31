@@ -13,4 +13,4 @@ Implémentation des dict en python :
 - http://www.laurentluce.com/posts/python-dictionary-implementation/
 
 
-![Bouton Continuer](https://placehold.co/200x45/0969da/EFEFEF?text=Je+passe+à+la+suite)
+[![Bouton Continuer](https://placehold.co/200x45/0969da/EFEFEF?text=Je+passe+à+la+suite)](./Structure%20de%20données%20probabiliste%20:%20Filtre%20de%20bloom.md)
