@@ -7,7 +7,7 @@ https://user-images.githubusercontent.com/739495/229082939-bd4cc538-37cc-4939-80
 
 
 # Tu veux aller plus loin ?
-Implémentation des dict en python :
+Implémentation des dictionnaires python :
 - https://github.com/python/cpython/blob/main/Objects/dictobject.c
 - https://github.com/python/cpython/blob/main/Objects/dictnotes.txt
 - http://www.laurentluce.com/posts/python-dictionary-implementation/
