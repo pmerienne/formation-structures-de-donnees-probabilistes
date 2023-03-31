@@ -1,5 +1,5 @@
-from sdp.datastix.fast_db import FastDB, FastDBIndex
-from tests.datastix.model import User
+from sdp.fast_db import FastDB, FastDBIndex
+from tests.fast_db.model import User
 
 
 def test_everything(tmp_path):

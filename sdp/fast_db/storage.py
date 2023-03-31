@@ -1,46 +1,10 @@
 import os
 import pickle
-import shelve
 import sys
 from pathlib import Path
-from typing import Any, Optional
-
+from typing import Any
 
 INT_SIZE = 4
-
-
-class FastDB:
-    def __init__(self, root_directory: Path):
-        self.root_directory = root_directory
-        self.storage = FastDBStorage(root_directory / 'data.db')
-        self.index = FastDBIndex(root_directory / 'index.db')
-
-    def get(self, key: str) -> Optional[Any]:
-        position = self.index.get_position(key)
-        return self.storage.read_value(position) if position is not None else None
-
-    def set(self, key: str, value: Any):
-        position = self.storage.write_value(value)
-        self.index.set_position(key, position)
-
-    def close(self):
-        self.index.close()
-        self.storage.close()
-
-
-class FastDBIndex:  # TODO: use B+tree ?
-    def __init__(self, index_path: Path):
-        self.index_path = index_path
-        self.index_file = shelve.open(str(index_path.absolute()))
-
-    def get_position(self, key: str) -> Optional[int]:
-        return self.index_file.get(key)
-
-    def set_position(self, key: str, position: int):
-        self.index_file[key] = position
-
-    def close(self):
-        self.index_file.close()
 
 
 class FastDBStorage:

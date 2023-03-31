@@ -1,11 +1,11 @@
 import random
 from pathlib import Path
-from tempfile import NamedTemporaryFile, TemporaryDirectory
+from tempfile import TemporaryDirectory
 from uuid import uuid4
 
-from sdp.datastix.fast_db import FastDB, FastDBIndex, FastDBStorage, FastDBSerializer
+from sdp.fast_db import FastDB, FastDBIndex, FastDBStorage, FastDBSerializer
 from sdp.perf_utils import pretty_timeit
-from tests.datastix.model import User
+from tests.fast_db.model import User
 
 keys = []
 positions = []
