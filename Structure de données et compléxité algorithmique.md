@@ -11,4 +11,4 @@ L'étude des algorithme de tri est un excellent moyen d'améliorer ces capacité
 - [Algorithmes de tri en python](https://geekflare.com/fr/python-sorting-algorithms)
 
 
-![Bouton Continuer](https://placehold.co/200x45/0969da/EFEFEF?text=Je+passe+à+la+suite)
+[![Bouton Continuer](https://placehold.co/200x45/0969da/EFEFEF?text=Je+passe+à+la+suite)](./Structure%20de%20données%20:%20table%20de%20hachage.md)
