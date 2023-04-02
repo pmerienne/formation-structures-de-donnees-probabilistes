@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Optional
 
 
-class FastDBIndex:  # TODO: use B+tree ?
+class FastDBIndex:
     def __init__(self, index_path: Path):
         self.index_path = index_path
         self.index_file = shelve.open(str(index_path.absolute()))
