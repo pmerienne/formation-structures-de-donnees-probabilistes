@@ -1,9 +1,12 @@
+import pytest as pytest
+
 from sdp.fast_db import FastDB, FastDBIndex, FastDBStorage
 from tests.fast_db.model import User
 
 
-def test_db(tmp_path):
-    db = FastDB(tmp_path)
+@pytest.mark.parametrize("db_class", [FastDB])
+def test_db(tmp_path, db_class):
+    db = db_class(tmp_path)
 
     pmerienne = User(first_name='Pierre', last_name='Merienne')
     juchanut = User(first_name='Julie', last_name='Chanut')
@@ -20,16 +23,17 @@ def test_db(tmp_path):
 
     db.close()
 
-    db = FastDB(tmp_path)
+    db = db_class(tmp_path)
     assert db.get('pmerienne') == pmerienne
     assert db.get('juchanut') == juchanut
     assert db.get('gboole') == gboole
     assert db.get('unknown') is None
 
 
-def test_index(tmp_path):
+@pytest.mark.parametrize("index_class", [FastDBIndex])
+def test_index(tmp_path, index_class):
     index_filepath = tmp_path / "index.db"
-    index = FastDBIndex(index_filepath)
+    index = index_class(index_filepath)
 
     assert index.get_position('unknown') is None
 
@@ -42,14 +46,15 @@ def test_index(tmp_path):
 
     index.close()
 
-    index = FastDBIndex(index_filepath)
+    index = index_class(index_filepath)
     assert index.get_position('foo') == 42
     assert index.get_position('foobar') == 44
 
 
-def test_storage(tmp_path):
+@pytest.mark.parametrize("storage_class", [FastDBStorage])
+def test_storage(tmp_path, storage_class):
     filepath = tmp_path / "data.db"
-    storage = FastDBStorage(filepath)
+    storage = storage_class(filepath)
 
     position_foo = storage.write_value({'foo': 'bar'})
     position_123 = storage.write_value(123)
@@ -58,7 +63,7 @@ def test_storage(tmp_path):
     assert storage.read_value(position_123) == 123
 
     storage.close()
-    storage = FastDBStorage(filepath)
+    storage = storage_class(filepath)
 
     assert storage.read_value(position_foo) == {'foo': 'bar'}
     assert storage.read_value(position_123) == 123
