@@ -1,3 +1,4 @@
+import shelve
 import sys
 from pathlib import Path
 from typing import Optional
@@ -26,3 +27,19 @@ class FastDBIndex:
 
     def close(self):
         self.tree.close()
+
+
+class ShelfIndex:
+    def __init__(self, index_path: Path):
+        self.index_path = index_path
+        self.shelf = shelve.open(str(index_path.absolute()))
+
+    def get_position(self, key: str) -> Optional[int]:
+        return self.shelf.get(key)
+
+    def set_position(self, key: str, position: int):
+        self.shelf[key] = position
+
+    def close(self):
+        self.shelf.close()
+

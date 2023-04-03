@@ -1,10 +1,12 @@
 import pytest as pytest
 
 from sdp.fast_db import FastDB, FastDBIndex, FastDBStorage
+from sdp.fast_db.db import SuperFastDB, SuperDuperFastDB
+from sdp.fast_db.index import ShelfIndex
 from tests.fast_db.model import User
 
 
-@pytest.mark.parametrize("db_class", [FastDB])
+@pytest.mark.parametrize("db_class", [FastDB, SuperFastDB, SuperDuperFastDB])
 def test_db(tmp_path, db_class):
     db = db_class(tmp_path)
 
@@ -30,7 +32,7 @@ def test_db(tmp_path, db_class):
     assert db.get('unknown') is None
 
 
-@pytest.mark.parametrize("index_class", [FastDBIndex])
+@pytest.mark.parametrize("index_class", [FastDBIndex, ShelfIndex])
 def test_index(tmp_path, index_class):
     index_filepath = tmp_path / "index.db"
     index = index_class(index_filepath)
