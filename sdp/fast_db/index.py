@@ -1,18 +1,28 @@
-import shelve
+import sys
 from pathlib import Path
 from typing import Optional
+
+from bplustree import BPlusTree
+from bplustree.serializer import StrSerializer
 
 
 class FastDBIndex:
     def __init__(self, index_path: Path):
         self.index_path = index_path
-        self.index_file = shelve.open(str(index_path.absolute()))
+        self.tree = BPlusTree(
+            str(index_path),
+            order=50,
+            key_size=256, value_size=8, page_size=4096 * 16,
+            serializer=StrSerializer()
+        )
 
     def get_position(self, key: str) -> Optional[int]:
-        return self.index_file.get(key)
+        serialized = self.tree.get(key)
+        return int.from_bytes(serialized, byteorder=sys.byteorder) if serialized else None
 
     def set_position(self, key: str, position: int):
-        self.index_file[key] = position
+        serialized = position.to_bytes(8, byteorder=sys.byteorder)
+        self.tree[key] = serialized
 
     def close(self):
-        self.index_file.close()
+        self.tree.close()

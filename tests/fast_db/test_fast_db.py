@@ -1,8 +1,8 @@
-from sdp.fast_db import FastDB, FastDBIndex
+from sdp.fast_db import FastDB, FastDBIndex, FastDBStorage
 from tests.fast_db.model import User
 
 
-def test_everything(tmp_path):
+def test_db(tmp_path):
     db = FastDB(tmp_path)
 
     pmerienne = User(first_name='Pierre', last_name='Merienne')
@@ -46,4 +46,20 @@ def test_index(tmp_path):
     assert index.get_position('foo') == 42
     assert index.get_position('foobar') == 44
 
+
+def test_storage(tmp_path):
+    filepath = tmp_path / "data.db"
+    storage = FastDBStorage(filepath)
+
+    position_foo = storage.write_value({'foo': 'bar'})
+    position_123 = storage.write_value(123)
+
+    assert storage.read_value(position_foo) == {'foo': 'bar'}
+    assert storage.read_value(position_123) == 123
+
+    storage.close()
+    storage = FastDBStorage(filepath)
+
+    assert storage.read_value(position_foo) == {'foo': 'bar'}
+    assert storage.read_value(position_123) == 123
 
