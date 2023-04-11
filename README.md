@@ -24,4 +24,3 @@ Programmation en python (3.x), Écriture de test avec Pytest, Utilisation git
 
 
 [![Bouton Démarrer](https://placehold.co/150x45/0969da/EFEFEF?text=Je%20commence)](Structure%20de%20données%20et%20compléxité%20algorithmique.md)
-
